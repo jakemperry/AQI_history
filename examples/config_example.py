@@ -44,7 +44,7 @@ elif api.requires_2sa:
         sys.exit(1)
 
 # Use api.devices to list out all of the devices on your iCloud account
-# You can then
+# You can then see the device IDs and name/label for each device on your account.
 # print(api.devices)
 
 # You can set a variable with api.devices using either the actual unique ID for the 
