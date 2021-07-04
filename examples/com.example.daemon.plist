@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+
+    <key>Label</key>
+    <string>com.example.daemon.plist</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StartInterval</key>
+    <integer>1800</integer>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/YourUsername/YourPath/AQI-history/stderr.log</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/YourUsername/YourPath/AQI-history/stdout.log</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/YourUsername/YourPath/AQI_history</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/anaconda3/bin/python</string>
+      <string>main.py</string>
+    </array>
+
+  </dict>
+</plist>
