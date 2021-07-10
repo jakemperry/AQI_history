@@ -10,6 +10,7 @@ import json
 #from scipy import stats
 import boto3
 import decimal
+from datetime import datetime
 
 
 # print(watch.location())
@@ -26,7 +27,8 @@ aqi_json = requests.get(queryurl).json()
 dynamo_client= boto3.resource('dynamodb', region_name='us-west-1') 
 table = dynamo_client.Table('aqi_history') #assign YOUR tablename here
 # Get data from response
-datetime = str(aqi_json['list'][0]['dt'])
+datetime_unix = str(aqi_json['list'][0]['dt'])
+utc = datetime.utcfromtimestamp(int(datetime_unix)).strftime('%Y-%m-%d %H:%M:%S')
 aqi_value = aqi_json['list'][0]['main']['aqi']
 co = round(decimal.Decimal(aqi_json['list'][0]['components']['co']),2)
 no = round(decimal.Decimal(aqi_json['list'][0]['components']['no']),2)
@@ -39,7 +41,8 @@ nh3 = round(decimal.Decimal(aqi_json['list'][0]['components']['nh3']),2)
 
 table.put_item(
            Item={
-               'datetime':datetime,
+               'datetime':datetime_unix,
+               'utc': utc,
                'aqi_value': aqi_value,
                'co': co,
                'no': no,
@@ -51,4 +54,4 @@ table.put_item(
                'nh3': nh3,
             }
         )
-print(f'successfully uploaded record: {datetime}')
+print(f'successfully uploaded record: {datetime_unix} / {utc}')

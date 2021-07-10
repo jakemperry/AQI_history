@@ -8,6 +8,7 @@ import requests
 import json
 import boto3
 import decimal
+from datetime import datetime
 
 
 # print(watch.location())
@@ -21,7 +22,8 @@ print(json_formatted_str)
 
 dynamo_client= boto3.resource('dynamodb', region_name='us-west-1') 
 table = dynamo_client.Table('aqi_weather_hist') #assign YOUR tablename here
-datetime = str(weather_json['dt'])
+datetime_unix = str(weather_json['dt'])
+utc = datetime.utcfromtimestamp(int(datetime_unix)).strftime('%Y-%m-%d %H:%M:%S')
 main = weather_json['weather'][0]['main']
 description = weather_json['weather'][0]['description']
 temp = round(decimal.Decimal(weather_json['main']['temp']),2)
@@ -39,7 +41,8 @@ sunset = round(decimal.Decimal(weather_json['sys']['sunset']),2)
 
 table.put_item(
            Item={
-               'datetime': datetime,
+               'datetime': datetime_unix,
+               'utc': utc,
                'main': main,
                'description': description,
                'temp': temp,
@@ -56,4 +59,4 @@ table.put_item(
                'sunset': sunset,
             }
         )
-print(f'successfully uploaded weather record: {datetime}')
+print(f'successfully uploaded weather record: {datetime_unix} / {utc}')
