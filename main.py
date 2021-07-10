@@ -5,9 +5,9 @@ from config import watch, owm_key
 import os
 import requests
 import json
-import pandas as pd
-import numpy
-from scipy import stats
+#import pandas as pd
+#import numpy
+#from scipy import stats
 import boto3
 import decimal
 
