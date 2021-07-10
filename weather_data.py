@@ -21,7 +21,7 @@ json_formatted_str = json.dumps(weather_json, indent=4)
 print(json_formatted_str)
 
 dynamo_client= boto3.resource('dynamodb', region_name='us-west-1') 
-table = dynamo_client.Table('aqi_weather_hist') #assign YOUR tablename here
+table = dynamo_client.Table('aqi_weather_2') #assign YOUR tablename here
 datetime_unix = str(weather_json['dt'])
 utc = datetime.utcfromtimestamp(int(datetime_unix)).strftime('%Y-%m-%d %H:%M:%S')
 main = weather_json['weather'][0]['main']
@@ -41,7 +41,7 @@ sunset = round(decimal.Decimal(weather_json['sys']['sunset']),2)
 
 table.put_item(
            Item={
-               'datetime': datetime_unix,
+               'unix_time': datetime_unix,
                'utc': utc,
                'main': main,
                'description': description,

@@ -25,7 +25,7 @@ aqi_json = requests.get(queryurl).json()
 # aqi_json=json.dumps(response, parse_float = decimal.Decimal)
 # Load to dynamoDB
 dynamo_client= boto3.resource('dynamodb', region_name='us-west-1') 
-table = dynamo_client.Table('aqi_history') #assign YOUR tablename here
+table = dynamo_client.Table('aqi_hist_2') #assign YOUR tablename here
 # Get data from response
 datetime_unix = str(aqi_json['list'][0]['dt'])
 utc = datetime.utcfromtimestamp(int(datetime_unix)).strftime('%Y-%m-%d %H:%M:%S')
@@ -41,7 +41,7 @@ nh3 = round(decimal.Decimal(aqi_json['list'][0]['components']['nh3']),2)
 
 table.put_item(
            Item={
-               'datetime':datetime_unix,
+               'unix_time':datetime_unix,
                'utc': utc,
                'aqi_value': aqi_value,
                'co': co,
