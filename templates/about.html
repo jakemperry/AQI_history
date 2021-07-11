@@ -18,80 +18,50 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link " aria-current="page" href="../index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="templates/api.html">Data & API</a>
+                <a class="nav-link" href="api.html">Data & API</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="templates/about.html">About</a>
+                <a class="nav-link active" href="about.html">About</a>
                 </li>
             </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container jumbotron">
         <div class = "row">
             <div class="col-lg-12 text-center">
+                <h1>About</h1>
                 <p id="updated"></p>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class = "col text-center">
-                <h1>AQI</h1>
-            </div>
-            <div class = "col text-center">
-                <h1 id="currentAQI"></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Temperature</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentTemp"></h1>
-            </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Feels like</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentFeel"></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Humidity</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentHumidity"></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Conditions</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentConditions"></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Wind Speed</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentWindSpeed"></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class = "col text-center">
-                <h3>Wind Direction</h3>
-            </div>
-            <div class="col text-center">
-                <h1 id ="currentWindDeg"></h1>
+            <div class = "col">
+                <h1>What</h1>
+                    <p>
+                        This project uses location data from my Apple Watch, 
+                        weather data from OpenWeatherMap.org, AWS DynamoDB,
+                        and a Raspberry Pi to retrieve, store, and present air quality
+                        and weather data based on my location.  Over time, enough data will be 
+                        collected to analyze for trends in AQI and temperature, and new features may be
+                        added in the future to account for average exposure to air pollutants.
+                    </p>
+                <h1>Why</h1>
+                    <p>
+                        Rather than tracking weather in a specific location, this app is tracking 
+                        weather for a specific person.  The data collected over time may be used to
+                        see trends in air quality and evaluate how changes in air quality might
+                        relate to my wellbeing.
+                    </p>
+                <h1>Who</h1>
+                    <p>
+                        Hello!  This project was built with grit and caffeine by <a href="https://www.github.com/jakemperry">jakemperry</a>.
+                    </p>
             </div>
         </div>
     </div>
