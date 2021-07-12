@@ -23,14 +23,17 @@ function currentAQI(){
         console.log(AQImapped)
 
         // Plot AQI over time
-        var xvals = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+        // var xvals = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
         var trace1 = {
-            x: xvals,
+            x: timestamps,
             y: AQImapped,
             type: 'scatter'
         }
         var plotData = [trace1];
-        Plotly.newPlot('AQIPlot',plotData);
+        var layout = {
+            title:'AQI over past 24 hours'
+          };
+        Plotly.newPlot('AQIPlot',plotData, layout);
     })
 }
 
