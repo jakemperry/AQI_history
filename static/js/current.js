@@ -139,11 +139,32 @@ function currentWeather(){
         console.log(Conditions_value)
         currentConditions.text(Conditions_value)
 
+        // Current Wind Speed
         var currentWindSpeed = d3.select("#currentWindSpeed")
         currentWindSpeed.html("")
         var WindSpeed_value = data.Items[weather_len-1].wind_speed.N
         console.log(WindSpeed_value)
         currentWindSpeed.text(`${WindSpeed_value} mph`)
+
+        // 24hr wind speed plot
+        var speed_24hr = Items.map(Item => Item.wind_speed)
+        speed_24hr = speed_24hr.map(wind_speed => wind_speed.N)
+        var trace1 = {
+            x: timestamps,
+            y: speed_24hr,
+            type: 'scatter'
+        }
+        var plotData = [trace1];
+        var layout = {
+            title:'Wind speed (mph) over past 24 hours',
+            margin: {
+                l:20,
+                r:10,
+                // t:0,
+                // b:0
+            }
+            };
+        Plotly.newPlot('SpeedPlot',plotData, layout);
 
         var currentWindDeg = d3.select("#currentWindDeg")
         currentWindDeg.html("")
