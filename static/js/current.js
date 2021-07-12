@@ -39,7 +39,7 @@ function currentAQI(){
                 // b:0
             }
           };
-        Plotly.newPlot('AQIPlot',plotData, layout);
+        Plotly.newPlot('AQIPlot',plotData, layout, {responsive: true});
     })
 }
 
@@ -78,7 +78,7 @@ function currentWeather(){
                 // b:0
             }
           };
-        Plotly.newPlot('TempPlot',plotData, layout);
+        Plotly.newPlot('TempPlot',plotData, layout, {responsive: true});
 
         // Current Feel
         var currentFeel = d3.select("#currentFeel")
@@ -104,7 +104,7 @@ function currentWeather(){
                 // b:0
             }
             };
-        Plotly.newPlot('FeelsPlot',plotData, layout);
+        Plotly.newPlot('FeelsPlot',plotData, layout, {responsive: true});
 
         // Current humidity
         var currentHumidity = d3.select("#currentHumidity")
@@ -131,7 +131,7 @@ function currentWeather(){
                 // b:0
             }
             };
-        Plotly.newPlot('HumidityPlot',plotData, layout);
+        Plotly.newPlot('HumidityPlot',plotData, layout, {responsive: true});
 
         var currentConditions = d3.select("#currentConditions")
         currentConditions.html("")
@@ -164,7 +164,7 @@ function currentWeather(){
                 // b:0
             }
             };
-        Plotly.newPlot('SpeedPlot',plotData, layout);
+        Plotly.newPlot('SpeedPlot',plotData, layout, {responsive: true});
 
         var currentWindDeg = d3.select("#currentWindDeg")
         currentWindDeg.html("")
