@@ -33,8 +33,8 @@ function currentAQI(){
         var layout = {
             title:'AQI over past 24 hours',
             margin: {
-                l:40,
-                r:0,
+                l:10,
+                r:10,
                 // t:0,
                 // b:0
             }
