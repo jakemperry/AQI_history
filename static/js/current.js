@@ -4,7 +4,6 @@ var weather_url = "https://wthdz1g2p5.execute-api.us-west-1.amazonaws.com/dev/ap
 function currentAQI(){
     d3.json(aqi_url).then(function(data){
         console.log(data)
-
         var currentAQI = d3.select("#currentAQI")
         currentAQI.html("")
         var aqi_len = data.Count
@@ -12,6 +11,10 @@ function currentAQI(){
         var AQI_value = data.Items[aqi_len-1].aqi_value.N
         console.log(AQI_value)
         currentAQI.text(AQI_value)
+        var Items = data.Items
+        var AQImapped = Items.map(Item => Item.aqi_value)
+        AQImapped = AQImapped.map(bob => bob.N)
+        console.log(AQImapped)
     })
 }
 
