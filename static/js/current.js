@@ -31,7 +31,13 @@ function currentAQI(){
         }
         var plotData = [trace1];
         var layout = {
-            title:'AQI over past 24 hours'
+            title:'AQI over past 24 hours',
+            margin: {
+                l:40,
+                r:0,
+                // t:0,
+                // b:0
+            }
           };
         Plotly.newPlot('AQIPlot',plotData, layout);
     })
