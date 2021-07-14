@@ -7,12 +7,44 @@ function currentAQI(){
         
         var currentAQI = d3.select("#currentAQI")
         currentAQI.html("")
+        var currentCO = d3.select("#co_current")
+        currentCO.html("")
+        var currentNH3 = d3.select("#nh3_current")
+        currentNH3.html("")
+        var currentNO = d3.select("#no_current")
+        currentNO.html("")
+        var currentNO2 = d3.select("#no2_current")
+        currentNO2.html("")
+        var currentO3 = d3.select("#o3_current")
+        currentO3.html("")
+        var currentSO2 = d3.select("#so2_current")
+        currentSO2.html("")
         var aqi_len = data.Count
         console.log(aqi_len)
+
         // Get most recent AQI value
         var AQI_value = data.Items[aqi_len-1].aqi_value.N
         console.log(AQI_value)
         currentAQI.text(AQI_value)
+        // Get most recent CO value
+        var CO_value = data.Items[aqi_len-1].co.N
+        currentCO.text(CO_value)
+        // Get most recent NH3 value
+        var NH3_value = data.Items[aqi_len-1].nh3.N
+        currentNH3.text(NH3_value)
+        // Get most recent NO value
+        var NO_value = data.Items[aqi_len-1].no.N
+        currentNO.text(NO_value)
+        // Get most recent NO2 value
+        var NO2_value = data.Items[aqi_len-1].no2.N
+        currentNO2.text(NO2_value)
+        // Get most recent O3 value
+        var O3_value = data.Items[aqi_len-1].o3.N
+        currentO3.text(O3_value)
+        // Get most recent SO2 value
+        var SO2_value = data.Items[aqi_len-1].so2.N
+        currentSO2.text(SO2_value)
+
         // Get time series data
         var Items = data.Items
         var timestamps = Items.map(Item => Item.utc)
@@ -23,7 +55,6 @@ function currentAQI(){
         console.log(AQImapped)
 
         // Plot AQI over time
-        // var xvals = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
         var trace1 = {
             x: timestamps,
             y: AQImapped,
