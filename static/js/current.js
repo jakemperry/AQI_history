@@ -19,6 +19,10 @@ function currentAQI(){
         currentO3.html("")
         var currentSO2 = d3.select("#so2_current")
         currentSO2.html("")
+        var currentPM2_5 = d3.select("#pm2_5_current")
+        currentPM2_5.html("")
+        var currentPM10 = d3.select("#pm10_current")
+        currentPM10.html("")
         var aqi_len = data.Count
         console.log(aqi_len)
 
@@ -44,6 +48,12 @@ function currentAQI(){
         // Get most recent SO2 value
         var SO2_value = data.Items[aqi_len-1].so2.N
         currentSO2.text(SO2_value)
+        // Get most recent PM2.5 value
+        var PM2_5_value = data.Items[aqi_len-1].pm2_5.N
+        currentPM2_5.text(PM2_5_value)
+        // Get most recent PM10 value
+        var PM10_value = data.Items[aqi_len-1].pm10.N
+        currentPM10.text(PM10_value)
 
         // Get time series data
         var Items = data.Items
