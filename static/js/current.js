@@ -217,11 +217,132 @@ function currentWeather(){
             };
         Plotly.newPlot('SpeedPlot',plotData, layout, {responsive: true});
 
+        // Wind Direction
         var currentWindDeg = d3.select("#currentWindDeg")
         currentWindDeg.html("")
         var WindDeg_value = data.Items[weather_len-1].wind_deg.N
         console.log(WindDeg_value)
         currentWindDeg.text(`${WindDeg_value}°`)
+        var wind_deg_24hr = Items.map(Item => Item.wind_deg)
+        wind_deg_24hr = wind_deg_24hr.map(wind_deg => wind_deg.N)
+        var directions = []
+        wind_deg_24hr.forEach(element => {
+            if (parseInt(element)>348.75){
+                directions.push("N")
+            } else if (parseInt(element)>326.25){
+                directions.push("NNW")
+            } else if (parseInt(element)>292.5){
+                directions.push("NW")
+            } else if (parseInt(element)>303.75){
+                directions.push("WNW")
+            } else if (parseInt(element)>281.25){
+                directions.push("W")
+            } else if (parseInt(element)>258.75){
+                directions.push("WSW")
+            } else if (parseInt(element)>236.25){
+                directions.push("SW")
+            } else if (parseInt(element)>213.75){
+                directions.push("SSW")
+            } else if (parseInt(element)>191.25){
+                directions.push("S")
+            } else if (parseInt(element)>168.75){
+                directions.push("SSE")
+            } else if (parseInt(element)>146.25){
+                directions.push("SE")
+            } else if (parseInt(element)>123.75){
+                directions.push("ESE")
+            } else if (parseInt(element)>101.25){
+                directions.push("E")
+            } else if (parseInt(element)>78.75){
+                directions.push("ENE")
+            } else if (parseInt(element)>56.25){
+                directions.push("NE")
+            } else if (parseInt(element)>33.75){
+                directions.push("NNE")
+            } else {
+                directions.push("N")
+            }
+        });
+
+        var e_count = 0
+        var ene_count = 0
+        var ne_count = 0
+        var nne_count = 0
+        var n_count = 0
+        var nnw_count = 0
+        var nw_count = 0
+        var wnw_count = 0
+        var w_count = 0
+        var wsw_count = 0
+        var sw_count=0
+        var ssw_count = 0
+        var s_count = 0
+        var sse_count = 0
+        var se_count = 0
+        var ese_count = 0
+        var direction_labels = ["E","ENE","NE","NNE","N", "NNW","NW","WNW","W","WSW","SW","SSW","S","SSE","SE","ESE","E"]
+        // var direction_count=[]
+        directions.forEach(element => {
+            if (element=="E"){
+                e_count++
+            } else if (element=="ENE"){
+                ene_count++
+            } else if (element=="NE"){
+                ne_count++
+            } else if (element=="NNE"){
+                nne_count++
+            } else if (element=="N"){
+                n_count++
+            } else if (element=="NNW"){
+                nnw_count++
+            } else if (element=="NW"){
+                nw_count++
+            } else if (element=="WNW"){
+                wnw_count++
+            } else if (element=="W"){
+                w_count++
+            } else if (element=="WSW"){
+                wsw_count++
+            } else if (element=="SW"){
+                sw_count++
+            } else if (element=="SSW"){
+                ssw_count++
+            } else if (element=="S"){
+                s_count++
+            } else if(element=="SSE"){
+                sse_count++
+            } else if (element=="SE"){
+                se_count++
+            } else {
+                ese_count++
+            }
+            // var direction_count=[e_count,ene_count,ne_count,nne_count,n_count,nnw_count,nw_count,wnw_count,w_count,wsw_count,sw_count,ssw_count,s_count,sse_count,se_count,ese_count,e_count]
+        });
+        var direction_count=[e_count,ene_count,ne_count,nne_count,n_count,nnw_count,nw_count,wnw_count,w_count,wsw_count,sw_count,ssw_count,s_count,sse_count,se_count,ese_count,e_count]
+        // console.log(wind_deg_24hr)
+        // console.log(directions)
+        console.log(direction_count)
+
+        radar_data = [{
+            name:"Wind Direction",
+            type: 'scatterpolar',
+            r: direction_count,
+            theta: direction_labels,
+            fill: 'toself'
+          }]
+          
+          layout = {
+            title: "Prominent Wind Direction over past 24 hours",
+            polar: {
+              radialaxis: {
+                visible: true,
+                range: [0, 50]
+              }
+            },
+            showlegend: false
+          }
+          
+          Plotly.newPlot("windDirectionRadar", radar_data, layout)
 
         var updated = d3.select("#updated")
         updated.html("")
