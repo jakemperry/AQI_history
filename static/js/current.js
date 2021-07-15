@@ -105,11 +105,21 @@ function currentWeather(){
         var temp_24hr = Items.map(Item => Item.temp)
         temp_24hr = temp_24hr.map(temp => temp.N)
         var trace1 = {
+            name: 'Temperature (°F)',
             x: timestamps,
             y: temp_24hr,
             type: 'scatter'
         }
-        var plotData = [trace1];
+
+        var feel_24hr = Items.map(Item => Item.feels_like)
+        feel_24hr = feel_24hr.map(feels_like => feels_like.N)
+        var trace2 = {
+            name: 'Feels like (°F)',
+            x: timestamps,
+            y: feel_24hr,
+            type: 'scatter'
+        }
+        var plotData = [trace1,trace2];
         var layout = {
             title:'Temperature (°F) over past 24 hours',
             margin: {
@@ -117,6 +127,12 @@ function currentWeather(){
                 r:10,
                 // t:0,
                 // b:0
+            },
+            legend: {
+                orientation:"h",
+                x: 0.5,
+                xanchor: 'center',
+                y: -0.15,
             }
           };
         Plotly.newPlot('TempPlot',plotData, layout, {responsive: true});
@@ -128,24 +144,18 @@ function currentWeather(){
         console.log(Feel_value)
         currentFeel.text(`${Feel_value}°F`)
         // 24hr feel plot
-        var feel_24hr = Items.map(Item => Item.feels_like)
-        feel_24hr = feel_24hr.map(feels_like => feels_like.N)
-        var trace1 = {
-            x: timestamps,
-            y: feel_24hr,
-            type: 'scatter'
-        }
-        var plotData = [trace1];
-        var layout = {
-            title:'Feels like (°F) over past 24 hours',
-            margin: {
-                l:20,
-                r:10,
-                // t:0,
-                // b:0
-            }
-            };
-        Plotly.newPlot('FeelsPlot',plotData, layout, {responsive: true});
+        
+        // var plotData = [trace1];
+        // var layout = {
+        //     title:'Feels like (°F) over past 24 hours',
+        //     margin: {
+        //         l:20,
+        //         r:10,
+        //         // t:0,
+        //         // b:0
+        //     }
+        //     };
+        // Plotly.newPlot('FeelsPlot',plotData, layout, {responsive: true});
 
         // Current humidity
         var currentHumidity = d3.select("#currentHumidity")
