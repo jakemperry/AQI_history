@@ -342,7 +342,7 @@ function currentWeather(){
             showlegend: false
           }
           
-          Plotly.newPlot("windDirectionRadar", radar_data, layout)
+          Plotly.newPlot("windDirectionRadar", radar_data, layout, {responsive: true})
 
         var updated = d3.select("#updated")
         updated.html("")
