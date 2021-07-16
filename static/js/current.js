@@ -323,6 +323,10 @@ function currentWeather(){
         // console.log(directions)
         console.log(direction_count)
 
+        var max = direction_count.reduce(function(a, b) {
+            return Math.max(a, b);
+        });
+
         radar_data = [{
             name:"Wind Direction",
             type: 'scatterpolar',
@@ -332,11 +336,11 @@ function currentWeather(){
           }]
           
           layout = {
-            title: "Prominent Wind Direction over past 24 hours",
+            title: "Wind Direction over past 24 hours",
             polar: {
               radialaxis: {
                 visible: true,
-                range: [0, 50]
+                range: [0, max]
               }
             },
             showlegend: false
