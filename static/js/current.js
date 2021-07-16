@@ -61,6 +61,22 @@ function currentAQI(){
         timestamps = timestamps.map(utc => utc.S)
         var AQImapped = Items.map(Item => Item.aqi_value)
         AQImapped = AQImapped.map(aqi_value => aqi_value.N)
+        var coMapped = Items.map(Item => Item.co)
+        coMapped = coMapped.map(co => co.N)
+        var nh3mapped = Items.map(Item => Item.nh3)
+        nh3mapped = nh3mapped.map(nh3 => nh3.N)
+        var nomapped = Items.map(Item => Item.no)
+        nomapped = nomapped.map(no => no.N)
+        var no2mapped = Items.map(Item => Item.no2)
+        no2mapped = no2mapped.map(no2 => no2.N)
+        var o3mapped = Items.map(Item => Item.o3)
+        o3mapped = o3mapped.map(o3 => o3.N)
+        var so2mapped = Items.map(Item => Item.so2)
+        so2mapped = so2mapped.map(so2 => so2.N)
+        var pm2_5mapped = Items.map(Item => Item.pm2_5)
+        pm2_5mapped = pm2_5mapped.map(pm2_5 => pm2_5.N)
+        var pm10mapped = Items.map(Item => Item.pm10)
+        pm10mapped = pm10mapped.map(pm10 => pm10.N)
         console.log(timestamps)
         console.log(AQImapped)
 
@@ -81,6 +97,149 @@ function currentAQI(){
             }
           };
         Plotly.newPlot('AQIPlot',plotData, layout, {responsive: true});
+
+        // Plot AQI over time
+        var trace1 = {
+            name: "AQI",
+            x: timestamps,
+            y: AQImapped,
+            type: 'scatter',
+            line: {
+                dash: 'solid',
+                width: 4
+              }
+        }
+
+        var trace2 = {
+            name: "CO",
+            x: timestamps,
+            y: coMapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+
+        var trace3 = {
+            name: "NH3",
+            x: timestamps,
+            y: nh3mapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+
+        var trace4 = {
+            name: "NO",
+            x: timestamps,
+            y: nomapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+        var trace5 = {
+            name: "NO2",
+            x: timestamps,
+            y: no2mapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+        var trace6 = {
+            name: "O3",
+            x: timestamps,
+            y: o3mapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+        var trace7 = {
+            name: "SO2",
+            x: timestamps,
+            y: so2mapped,
+            type: 'scatter',
+            yaxis: 'y2',
+            line: {
+                dash: 'dash',
+                width: 2
+              }
+        }
+        var trace8 = {
+            name: "PM2.5",
+            x: timestamps,
+            y: pm2_5mapped,
+            type: 'scatter',
+            yaxis: 'y3',
+            line: {
+                dash: 'dashdot',
+                width: 2
+              }
+        }
+        var trace9 = {
+            name: "PM10",
+            x: timestamps,
+            y: coMapped,
+            type: 'scatter',
+            yaxis: 'y3',
+            line: {
+                dash: 'dashdot',
+                width: 2
+              }
+        }
+
+        var plotData = [trace1, trace2, trace3,trace4,trace5, trace6,trace7,trace8,trace9];
+        var layout = {
+            title:'AQI Components over past 24 hours',
+            xaxis: {domain: [0.02, 0.9]},
+            yaxis: {title: 'AQI'},
+            yaxis2: {
+                title: 'Gases, ug/m3',
+                // titlefont: {color: 'rgb(148, 103, 189)'},
+                // tickfont: {color: 'rgb(148, 103, 189)'},
+                overlaying: 'y',
+                side: 'right',
+                type: 'log',
+                autorange: true,
+                position: 1,
+            },
+            yaxis3: {
+                title: 'Particulates, ug/m3',
+                // titlefont: {color: 'rgb(148, 103, 189)'},
+                // tickfont: {color: 'rgb(148, 103, 189)'},
+                overlaying: 'y',
+                side: 'right',
+                type: 'log',
+                autorange: true,
+                position: 0.91
+            },
+            margin: {
+                l:20,
+                r:50,
+                // t:0,
+                // b:0
+            },
+            legend: {
+                orientation:"h",
+                x: 0.5,
+                xanchor: 'center',
+                y: -0.15,
+            }
+          };
+        Plotly.newPlot('AQIPlotFull',plotData, layout, {responsive: true});
     })
 }
 
