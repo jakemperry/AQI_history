@@ -92,11 +92,13 @@ function currentAQI(){
             margin: {
                 l:20,
                 r:10,
-                // t:0,
-                // b:0
+                t:30,
+                b:30
             }
           };
-        Plotly.newPlot('AQIPlot',plotData, layout, {responsive: true});
+        Plotly.newPlot('AQIPlot',plotData, layout, {
+            responsive: true,
+            displayModeBar: false});
 
         // Plot AQI over time
         var trace1 = {
@@ -229,8 +231,8 @@ function currentAQI(){
             margin: {
                 l:20,
                 r:50,
-                // t:0,
-                // b:0
+                t:30,
+                b:30
             },
             legend: {
                 orientation:"h",
@@ -239,7 +241,9 @@ function currentAQI(){
                 y: -0.15,
             }
           };
-        Plotly.newPlot('AQIPlotFull',plotData, layout, {responsive: true});
+        Plotly.newPlot('AQIPlotFull',plotData, layout, {
+            responsive: true, 
+            displayModeBar: false});
     })
 }
 
@@ -284,8 +288,8 @@ function currentWeather(){
             margin: {
                 l:20,
                 r:10,
-                // t:0,
-                // b:0
+                t:30,
+                b:30
             },
             legend: {
                 orientation:"h",
@@ -294,7 +298,9 @@ function currentWeather(){
                 y: -0.15,
             }
           };
-        Plotly.newPlot('TempPlot',plotData, layout, {responsive: true});
+        Plotly.newPlot('TempPlot',plotData, layout, {
+            responsive: true,
+            displayModeBar: false});
 
         // Current Feel
         var currentFeel = d3.select("#currentFeel")
@@ -337,11 +343,13 @@ function currentWeather(){
             margin: {
                 l:20,
                 r:10,
-                // t:0,
-                // b:0
+                t:30,
+                b:30
             }
             };
-        Plotly.newPlot('HumidityPlot',plotData, layout, {responsive: true});
+        Plotly.newPlot('HumidityPlot',plotData, layout, {
+            responsive: true,
+            displayModeBar: false});
 
         var currentConditions = d3.select("#currentConditions")
         currentConditions.html("")
@@ -370,11 +378,13 @@ function currentWeather(){
             margin: {
                 l:20,
                 r:10,
-                // t:0,
-                // b:0
+                t:30,
+                b:30
             }
             };
-        Plotly.newPlot('SpeedPlot',plotData, layout, {responsive: true});
+        Plotly.newPlot('SpeedPlot',plotData, layout, {
+            responsive: true,
+            displayModeBar: false});
 
         // Wind Direction
         var currentWindDeg = d3.select("#currentWindDeg")
@@ -505,7 +515,9 @@ function currentWeather(){
             showlegend: false
           }
           
-          Plotly.newPlot("windDirectionRadar", radar_data, layout, {responsive: true})
+          Plotly.newPlot("windDirectionRadar", radar_data, layout, {
+                responsive: true,
+                displayModeBar: false})
 
         var updated = d3.select("#updated")
         updated.html("")
