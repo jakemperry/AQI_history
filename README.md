@@ -19,7 +19,7 @@ pyicloud allows you to connect to an iCloud account using Python.  I wrote a ```
 Once your devices are loaded, you can set a variable to a specific iCloud device and use that for location data (I've used my Apple Watch for this project, but an iPhone would work fine, too).
 
 ### Weather/AQI data: OpenWeatherMap.org
-OpenWeatherMap(OWM) provides APIs for weather data, including AQI data.  Using the lat and lon coordinates from my Apple Watch, I'm running API requests for AQI data.  My OWM API key is saved in my ```config.py``` file, but you can see how I have things structured in the ```config_example.py``` file.
+OpenWeatherMap (OWM) provides APIs for weather data, including AQI data.  Using the lat and lon coordinates from my Apple Watch, I'm running API requests for AQI data.  My OWM API key is saved in my ```config.py``` file, but you can see how I have things structured in the ```config_example.py``` file.
 
 ## ETL
 
