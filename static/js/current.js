@@ -57,26 +57,16 @@ function currentAQI(){
 
         // Get time series data
         var Items = data.Items
-        var timestamps = Items.map(Item => Item.utc)
-        timestamps = timestamps.map(utc => utc.S)
-        var AQImapped = Items.map(Item => Item.aqi_value)
-        AQImapped = AQImapped.map(aqi_value => aqi_value.N)
-        var coMapped = Items.map(Item => Item.co)
-        coMapped = coMapped.map(co => co.N)
-        var nh3mapped = Items.map(Item => Item.nh3)
-        nh3mapped = nh3mapped.map(nh3 => nh3.N)
-        var nomapped = Items.map(Item => Item.no)
-        nomapped = nomapped.map(no => no.N)
-        var no2mapped = Items.map(Item => Item.no2)
-        no2mapped = no2mapped.map(no2 => no2.N)
-        var o3mapped = Items.map(Item => Item.o3)
-        o3mapped = o3mapped.map(o3 => o3.N)
-        var so2mapped = Items.map(Item => Item.so2)
-        so2mapped = so2mapped.map(so2 => so2.N)
-        var pm2_5mapped = Items.map(Item => Item.pm2_5)
-        pm2_5mapped = pm2_5mapped.map(pm2_5 => pm2_5.N)
-        var pm10mapped = Items.map(Item => Item.pm10)
-        pm10mapped = pm10mapped.map(pm10 => pm10.N)
+        var timestamps = Items.map(Item => Item.utc.S)
+        var AQImapped = Items.map(Item => Item.aqi_value.N)
+        var coMapped = Items.map(Item => Item.co.N)
+        var nh3mapped = Items.map(Item => Item.nh3.N)
+        var nomapped = Items.map(Item => Item.no.N)
+        var no2mapped = Items.map(Item => Item.no2.N)
+        var o3mapped = Items.map(Item => Item.o3.N)
+        var so2mapped = Items.map(Item => Item.so2.N)
+        var pm2_5mapped = Items.map(Item => Item.pm2_5.N)
+        var pm10mapped = Items.map(Item => Item.pm10.N)
         console.log(timestamps)
         console.log(AQImapped)
 
@@ -210,8 +200,6 @@ function currentAQI(){
             yaxis: {title: 'AQI'},
             yaxis2: {
                 title: 'Gases, ug/m3',
-                // titlefont: {color: 'rgb(148, 103, 189)'},
-                // tickfont: {color: 'rgb(148, 103, 189)'},
                 overlaying: 'y',
                 side: 'right',
                 type: 'log',
@@ -220,8 +208,6 @@ function currentAQI(){
             },
             yaxis3: {
                 title: 'Particulates, ug/m3',
-                // titlefont: {color: 'rgb(148, 103, 189)'},
-                // tickfont: {color: 'rgb(148, 103, 189)'},
                 overlaying: 'y',
                 side: 'right',
                 type: 'log',
@@ -264,9 +250,15 @@ function currentWeather(){
         console.log(Temp_value)
         currentTemp.text(`${Temp_value}°F`)
 
+        // Current Feel
+        var currentFeel = d3.select("#currentFeel")
+        currentFeel.html("")
+        var Feel_value = data.Items[weather_len-1].feels_like.N
+        console.log(Feel_value)
+        currentFeel.text(`${Feel_value}°F`)
+
         // 24hr temperature plot
-        var temp_24hr = Items.map(Item => Item.temp)
-        temp_24hr = temp_24hr.map(temp => temp.N)
+        var temp_24hr = Items.map(Item => Item.temp.N)
         var trace1 = {
             name: 'Temperature (°F)',
             x: timestamps,
@@ -274,8 +266,7 @@ function currentWeather(){
             type: 'scatter'
         }
 
-        var feel_24hr = Items.map(Item => Item.feels_like)
-        feel_24hr = feel_24hr.map(feels_like => feels_like.N)
+        var feel_24hr = Items.map(Item => Item.feels_like.N)
         var trace2 = {
             name: 'Feels like (°F)',
             x: timestamps,
@@ -302,26 +293,6 @@ function currentWeather(){
             responsive: true,
             displayModeBar: false});
 
-        // Current Feel
-        var currentFeel = d3.select("#currentFeel")
-        currentFeel.html("")
-        var Feel_value = data.Items[weather_len-1].feels_like.N
-        console.log(Feel_value)
-        currentFeel.text(`${Feel_value}°F`)
-        // 24hr feel plot
-        
-        // var plotData = [trace1];
-        // var layout = {
-        //     title:'Feels like (°F) over past 24 hours',
-        //     margin: {
-        //         l:20,
-        //         r:10,
-        //         // t:0,
-        //         // b:0
-        //     }
-        //     };
-        // Plotly.newPlot('FeelsPlot',plotData, layout, {responsive: true});
-
         // Current humidity
         var currentHumidity = d3.select("#currentHumidity")
         currentHumidity.html("")
@@ -330,8 +301,7 @@ function currentWeather(){
         currentHumidity.text(`${Humidity_value}%`)
 
         // 24hr humidity plot
-        var humidity_24hr = Items.map(Item => Item.humidity)
-        humidity_24hr = humidity_24hr.map(humidity => humidity.N)
+        var humidity_24hr = Items.map(Item => Item.humidity.N)
         var trace1 = {
             x: timestamps,
             y: humidity_24hr,
@@ -365,8 +335,7 @@ function currentWeather(){
         currentWindSpeed.text(`${WindSpeed_value} mph`)
 
         // 24hr wind speed plot
-        var speed_24hr = Items.map(Item => Item.wind_speed)
-        speed_24hr = speed_24hr.map(wind_speed => wind_speed.N)
+        var speed_24hr = Items.map(Item => Item.wind_speed.N)
         var trace1 = {
             x: timestamps,
             y: speed_24hr,
@@ -392,8 +361,7 @@ function currentWeather(){
         var WindDeg_value = data.Items[weather_len-1].wind_deg.N
         console.log(WindDeg_value)
         currentWindDeg.text(`${WindDeg_value}°`)
-        var wind_deg_24hr = Items.map(Item => Item.wind_deg)
-        wind_deg_24hr = wind_deg_24hr.map(wind_deg => wind_deg.N)
+        var wind_deg_24hr = Items.map(Item => Item.wind_deg.N)
         var directions = []
         wind_deg_24hr.forEach(element => {
             if (parseInt(element)>348.75){
@@ -485,11 +453,9 @@ function currentWeather(){
             } else {
                 ese_count++
             }
-            // var direction_count=[e_count,ene_count,ne_count,nne_count,n_count,nnw_count,nw_count,wnw_count,w_count,wsw_count,sw_count,ssw_count,s_count,sse_count,se_count,ese_count,e_count]
+
         });
         var direction_count=[e_count,ene_count,ne_count,nne_count,n_count,nnw_count,nw_count,wnw_count,w_count,wsw_count,sw_count,ssw_count,s_count,sse_count,se_count,ese_count,e_count]
-        // console.log(wind_deg_24hr)
-        // console.log(directions)
         console.log(direction_count)
 
         var max = direction_count.reduce(function(a, b) {
