@@ -37,7 +37,7 @@ With this combination of partition and sort key, I can query data that has a "sa
 
 I've set up a Raspberry Pi 4B to run ```main.py``` and ```weather_data.py``` on a regular basis.  Using cron, I've scheduled ```main.py ``` to run every 30 minutes, and ```weather_data.py``` to run every 6 minutes.  Since AQI data is assigned a timestamp for every hour, I figured that requesting AQI data every 30 minutes would allow for at least one response with the hourly timestamp.  Requesting weather data every 6 minutes provides more resolution than the AQI data, and might help to determine how trends in weather over the previous hour might affect the hourly AQI values.  As a bonus, I can view this data any time on a phone and have a relatively recent set of weather data.
 
-Since the Raspberry Pi is not my main computer and therefore can run scripts all the time, without any interaction/major maintenance from me.  As I deploy new code, I can pull the code down from github and update scripts to run on the Pi.
+The Raspberry Pi is not my main computer and therefore can run scripts all the time, without any interaction/major maintenance from me.  As I deploy new code, I can pull the code down from github and update scripts to run on the Pi.
 
 ### Previous deployment: launchd and plist file
 Before setting up a Raspberry Pi to run the tasks with cron, I set up a daemon on my Mac using launchd and a .plist file.  This file is set to automatically run the ```main.py``` script every 30 minutes (this was a test before implementing ```weather_data.py``` into the project).  You can see an example of how I've set up the .plist file in [com.example.daemon.plist](examples/com.example.daemon.plist).
