@@ -106,11 +106,11 @@ so2_max=round(decimal.Decimal(np.max(so2)),2)
 
 dynamo_client= boto3.resource('dynamodb', region_name='us-west-1') 
 aqi_table = dynamo_client.Table('aqi_hist_3')
-utc = datetime.utcfromtimestamp(int(date)).strftime('%Y-%m-%d %H:%M:%S')
+utc = datetime.utcfromtimestamp(int(date-86400)).strftime('%Y-%m-%d %H:%M:%S')
 aqi_table.put_item(
     Item={
         'entry_type':'daily_sum',
-        'unix_time': date,
+        'unix_time': date-86400,
         'utc': utc,
         'aqi_value': {
             "M":{
