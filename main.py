@@ -3,7 +3,6 @@ import requests
 import config
 from config import watch, owm_key
 import os
-import requests
 import json
 #import pandas as pd
 #import numpy

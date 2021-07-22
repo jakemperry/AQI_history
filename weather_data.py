@@ -4,7 +4,6 @@ import requests
 import config
 from config import watch, owm_key
 import os
-import requests
 import json
 import boto3
 import decimal
